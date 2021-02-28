@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *:not(body){
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        body{
+            margin: 0 auto;
+        }
+        canvas{
+            border: hidden 4px rgb(59, 55, 55);
+            margin-bottom: 50px;
+            margin-top: 50px;
+            height: 500px !important;
+
+        }
+        #chartSection{
+            margin: 0 auto;
+            text-align: center;
+            max-width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <section id="chartSection">
+<!--         <form id="form">
+            <label for="selectChart">Choose chart type:</label>
+            <select name="selectChart" id="selectChart">
+            <option value="bar" selected="selected">bar</option>
+            <option value="pie">pie</option>
+            <option value="doughnut">doughnut</option>
+            <option value="line">line</option>
+            </select>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+        <br> -->
+        
+        <input type="file" id="my_file_input" />
+        <div id='my_file_output'></div>
+    </section>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+            <script src="https://cdn.jsdelivr.net/npm/xlsx@0.14.3/dist/xlsx.full.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+            <script src=" https://cdnjs.cloudflare.com/ajax/libs/xls/0.7.4-a/xls.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+            <script src="./js/app.js"></script>
+</body>
+</html>

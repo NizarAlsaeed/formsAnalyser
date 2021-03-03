@@ -2,7 +2,6 @@
 // add custom chart type
 // deal with empty cells (the next cell shifts to it)
 // deal with checkboxes (multible answers in the same cell)
-// remove unrequired files
 // enhance the style
 // optimize the code
 // publish online or in an app
@@ -10,6 +9,7 @@
 
 var oFileIn;
 let chartType = 'pie';
+let totalsArr =[];
 
     oFileIn = document.getElementById('my_file_input');
     oFileIn.addEventListener('change', filePicked);
@@ -48,6 +48,8 @@ function filePicked(oEvent) {
 
 function startManiupulation(dataObject){
   //-------------convert to cloumns
+  /*as forms are filled in by columns we should take a coulmn of values
+   with the same type or i mean values that belong to the same question*/
   let cloumnHeadersArr=Object.keys(dataObject[0])
   for (let index = 0; index < cloumnHeadersArr.length; index++) {
     let columnValues =[];
@@ -61,14 +63,18 @@ function startManiupulation(dataObject){
     console.table(columnValues);
 
     //-----------take data labels----------
+    /*data labels are those things below the chart the shows each group of value are referenced by the same label.
+    so here we check for unique values from the array to take from each column all the types of values let's say */
     let labelArr=[];
     for(let j=0; j<columnValues.length;j++){
-      if(labelArr.indexOf(columnValues[j]) === -1 && columnValues[j] != undefined){//if value doe not exist
+      if(labelArr.indexOf(columnValues[j]) === -1 && columnValues[j] != undefined){//if value doe not exist in the label array
         labelArr.push(columnValues[j]);
       }
     }
     console.log(labelArr);
     //----------------count value duplication
+    /*creates an array of the number of dublication for each value. the logic is that i check if the value is the same as the label
+    add one so at the end we have an array of dublication values corresponding to the label aray */
     let dataArr= new Array(columnValues.length).fill(0);
     for (let j = 0; j < columnValues.length; j++) {
       for(let k=0;k<labelArr.length;k++){
@@ -83,11 +89,15 @@ function startManiupulation(dataObject){
   let splitingIndex = dataArr.indexOf(0);
   dataArr=dataArr.splice(0, splitingIndex)
   console.log(dataArr);
-  //-----------converting data array values to percentages
+
+  //-----------calculating the total and assigning it to array
   let sumOfValues =0;
   for (let z = 0; z < dataArr.length; z++) {
     sumOfValues+=dataArr[z];
   }
+  totalsArr.push(sumOfValues);
+
+  //-----------converting data array values to percentages
   for (let z = 0; z < dataArr.length; z++) {
     dataArr[z]=Math.round((dataArr[z]/sumOfValues)*100);
   }
@@ -108,7 +118,7 @@ function startManiupulation(dataObject){
        data: {
         datasets: [{
           data: dataArr,
-          backgroundColor: ['rgb(54, 162, 235)','rgb(255,143,0)','rgb(54, 162, 90)','rgb(255,207,0)','rgb(54, 16, 235)','rgb(143,20,82)','rgb(64,35,0)','rgb(54,20,82)','rgb(160,255,0)','rgb(255,0,0)','rgb(255,100,161)','rgb(94,91,30)'],
+          backgroundColor: ['rgb(54, 162, 235)','rgb(255,143,0)','rgb(54, 162, 90)','rgb(255,207,0)','rgb(54, 16, 235)','rgb(143,20,82)','rgb(64,35,0)','rgb(54,20,82)','rgb(160,255,0)','rgb(255,0,0)','rgb(255,100,161)','rgb(94,91,30)','rgb(0,143,29)'],
         }],
         labels: labelArr,
       },
@@ -125,7 +135,7 @@ function startManiupulation(dataObject){
       
         title: {
             display: true,
-            text: columName,
+            text: `${columName}  Total:${sumOfValues}`,
             fontSize: 20,
             padding:30,
         },
@@ -151,7 +161,7 @@ function startManiupulation(dataObject){
             align: 'start',
             offset: -30,
             borderWidth: 2,
-            borderColor: '#fff',
+            borderColor: '#fff', 
             borderRadius: 25,
             backgroundColor: (context) => {
               return context.dataset.backgroundColor;

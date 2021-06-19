@@ -121,13 +121,9 @@ function toPercent(dataArr) {
 function createChart(columName, columnValues, labelArr, dataArr, sumOfValues, chartType = 'pie') {
   //-------------create chart------
 
-  // automatically choosing chart type based on the column data
-  if ((columnValues.length - dataArr.length) <= (columnValues.length * 0.8)) {
-
+  // switch to 'bar' chart if too many unique values (slices)
+  if (dataArr.length >= 10) {
     chartType = 'bar';
-  }
-  else {
-    chartType = 'pie';
   }
 
   // defines mimimum duplication criteria to ignore uplottable columns (such as timestamp or ID .. etc)

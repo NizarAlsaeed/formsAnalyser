@@ -1,3 +1,4 @@
+
 let totalsArr = [];
 
 let oFileIn = document.getElementById('my_file_input');

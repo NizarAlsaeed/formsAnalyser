@@ -1,4 +1,3 @@
-
 let totalsArr = [];
 
 let oFileIn = document.getElementById('my_file_input');
@@ -17,13 +16,11 @@ function filePicked(oEvent) {
     let cfb = XLSX.read(data, { type: 'binary' });
 
     let wb = cfb;//XLSX.parse_xlscfb(cfb);
-    // console.log(wb)
     // Loop Over Each Sheet
     wb.SheetNames.forEach(function (sheetName) {
       // Obtain The Current Row As CSV
       let oJS = XLSX.utils.sheet_to_row_object_array(wb.Sheets[sheetName]);
-      console.log(`${sheetName}: `, oJS);
-      main(oJS);
+      startManiupulation(oJS)
     });
   };
 
@@ -40,7 +37,6 @@ function convertToCloumns(dataObject) {
   let allCols = [];
   let colNames = [];
   let cloumnHeadersArr = Object.keys(dataObject[0])
-  console.log(`The file has ${cloumnHeadersArr.length} columns: `, cloumnHeadersArr)
   for (let index = 0; index < cloumnHeadersArr.length; index++) {
     columnValues = [];
     colNames.push(cloumnHeadersArr[index]);
@@ -49,8 +45,7 @@ function convertToCloumns(dataObject) {
       columnValues.push(row[index]);
     }
     allCols.push(columnValues)
-    console.log(`${cloumnHeadersArr[index]} column in a table:`)
-    console.table(columnValues);
+
   }
   return [colNames, allCols]
 
@@ -110,12 +105,10 @@ function toPercent(dataArr) {
   return dataArr
 }
 
-
 function createChart(columName, columnValues, labelArr, dataArr, sumOfValues, chartType) {
 
   // defines mimimum duplication criteria to ignore uplottable columns (such as timestamp or ID .. etc)
   let minDuplicationCondition = (columnValues.length - dataArr.length) >= (columnValues.length * 0.30);
-  console.log('passed mimimum duplication criteria? ', minDuplicationCondition);
 
   if (minDuplicationCondition && columName != 'Timestamp') {
 
@@ -198,16 +191,11 @@ function startManiupulation(dataObject) {
   let recieved = convertToCloumns(dataObject)
   let columName = recieved[0]
   let columnValues = recieved[1]
-  console.log('Recieved this from convertToCloumns', recieved)
   for (colIndex in columnValues) {
-    console.log('processing column values:', columnValues[colIndex])
     let labelArr = takeDataLabels(columnValues[colIndex])
-    console.log('column labels:', labelArr)
     let dataArr = countValueDuplication(columnValues[colIndex], labelArr)
     dataArr = takeArrZerosOut(dataArr)
-    console.log('counted values occurance: ', dataArr)
     sumOfValues = calcTotal(dataArr)
-    console.log('Total coulmn values: ', sumOfValues)
     dataArr = toPercent(dataArr)
     chartType= $('#chartType option:selected').text();
     createChart(columName[colIndex],columnValues[colIndex], labelArr, dataArr, sumOfValues , chartType)
@@ -222,7 +210,6 @@ function update(){
   }
   alert('upload the file again !!')
 }
-
 function clearWorkspace(){
   canvases = document.querySelectorAll('canvas')
   for (let i=0;i< canvases.length; i++){
@@ -231,9 +218,15 @@ function clearWorkspace(){
   document.querySelector('#my_file_input').value = ''
 
 }
-function main(data) {
-  console.log(`loaded file sucsessfully`)
-  startManiupulation(data)
 
-  console.log('Finished Manipulation')
+module.exports = {
+  clearWorkspace,
+  update,
+  startManiupulation,
+  createChart,
+  calcTotal, 
+  takeArrZerosOut,
+  toPercent,
+  filePicked,
+  convertToCloumns
 }

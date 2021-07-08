@@ -1,6 +1,6 @@
 //  To do:
-// add custom chart type
-// enhance the style
+// add custom chart type >>> Noura 
+// enhance the style  Mahmoud 
 // dynamic background colors to fit the segments length
 // publish online or in an app
 

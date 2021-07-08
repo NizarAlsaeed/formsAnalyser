@@ -1,4 +1,4 @@
-# Google Forms Analyzer
+# Google Forms Analyzer version 2.0.0
 
 ## What is it?
 I faced a situation where i had a google form with too many responses and some of the responses are random and needed some cleaning.  When you make your updates and back to the charts you'll realize that they are still the same! so the original form charts do not update after your edits.
@@ -12,7 +12,18 @@ only two step:
 2. [upload it to this website](https://nizaralsaeed.github.io/formsAnalyser/)
 
 
-Author: Nizar Alsaeed
-
-Version: 1.0
+* Author: Nizar Alsaeed
+* collabrators :
+ - Raneem Abdalazez
+ - Noura Alquran
+ - Mahmoud Alzoubi
+ - Omer Alzoubi
+## Open Source Contribution Work 
+* This is Open Source Contribution  to the original repo , 
+* fixing : 
+1. Make it upload excel files only.
+2. deploy the app to heruko : https://formanalyser.herokuapp.com/ 
+3. enhance the style  >> Mahmoud 
+4. add custom chart type >>> Noura 
+5. refactor the code >> Omer
 

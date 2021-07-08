@@ -1,11 +1,3 @@
-//  To do:
-// add custom chart type
-// deal with empty cells (the next cell shifts to it)
-// deal with checkboxes (multible answers in the same cell)
-// dynamic background colors to fit the segments length
-// enhance the style
-// optimize the code
-// publish online or in an app
 
 let totalsArr = [];
 
@@ -118,13 +110,8 @@ function toPercent(dataArr) {
   return dataArr
 }
 
-function createChart(columName, columnValues, labelArr, dataArr, sumOfValues, chartType = 'pie') {
-  //-------------create chart------
 
-  // switch to 'bar' chart if too many unique values (slices)
-  if (dataArr.length >= 10) {
-    chartType = 'bar';
-  }
+function createChart(columName, columnValues, labelArr, dataArr, sumOfValues, chartType) {
 
   // defines mimimum duplication criteria to ignore uplottable columns (such as timestamp or ID .. etc)
   let minDuplicationCondition = (columnValues.length - dataArr.length) >= (columnValues.length * 0.30);
@@ -222,8 +209,18 @@ function startManiupulation(dataObject) {
     sumOfValues = calcTotal(dataArr)
     console.log('Total coulmn values: ', sumOfValues)
     dataArr = toPercent(dataArr)
-    createChart(columName[colIndex],columnValues[colIndex], labelArr, dataArr, sumOfValues)
+    chartType= $('#chartType option:selected').text();
+    createChart(columName[colIndex],columnValues[colIndex], labelArr, dataArr, sumOfValues , chartType)
   }
+}
+
+function update(){
+  chartType= $('#chartType option:selected').text();
+  canvases = document.querySelectorAll('canvas')
+  for (let i=0;i< canvases.length; i++){
+    document.querySelector('canvas').remove()
+  }
+  alert('upload the file again !!')
 }
 
 function clearWorkspace(){
@@ -232,10 +229,11 @@ function clearWorkspace(){
     document.querySelector('canvas').remove()
   }
   document.querySelector('#my_file_input').value = ''
+
 }
 function main(data) {
   console.log(`loaded file sucsessfully`)
-  //data = prepareData(data) // contribute here 
   startManiupulation(data)
+
   console.log('Finished Manipulation')
 }

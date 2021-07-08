@@ -1,3 +1,15 @@
+//  To do:
+// add custom chart type >>> Noura 
+// enhance the style  Mahmoud 
+// dynamic background colors to fit the segments length
+// publish online or in an app
+
+
+
+
+// deal with empty cells (the next cell shifts to it)
+// deal with checkboxes (multible answers in the same cell)
+// optimize the code
 
 let totalsArr = [];
 

@@ -1,11 +1,15 @@
 //  To do:
 // add custom chart type
+// enhance the style
+// dynamic background colors to fit the segments length
+// publish online or in an app
+
+
+
+
 // deal with empty cells (the next cell shifts to it)
 // deal with checkboxes (multible answers in the same cell)
-// dynamic background colors to fit the segments length
-// enhance the style
 // optimize the code
-// publish online or in an app
 
 let totalsArr = [];
 

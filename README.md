@@ -33,6 +33,16 @@ only two step:
  - Noura Alquran
  - Mahmoud Alzoubi
  - Omer Alzoubi
+ 
+# Why's? 
+1. Style is simple.
+2. Any file type can be uploaded 
+3. Only one type of chart was used.
+4. Code is a bit complicated. 
+5. Need to be deployed.
+
+
+
 ## Open Source Contribution Work 
 * This is Open Source Contribution  to the original repo , 
 * fixing : 
@@ -41,4 +51,3 @@ only two step:
 3. enhance the style  >> Mahmoud 
 4. add custom chart type >>> Noura 
 5. refactor the code >> Omer
-

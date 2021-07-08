@@ -1,0 +1,27 @@
+{
+  "name": "formsanalyser",
+  "version": "1.0.0",
+  "description": "## What is it? I faced a situation where i had a google form with too many responses and some of the responses are random and needed some cleaning.  When you make your updates and back to the charts you'll realize that they are still the same! so the original form charts do not update after your edits.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaneemAbdulazez/formsAnalyser.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaneemAbdulazez/formsAnalyser/issues"
+  },
+  "homepage": "https://github.com/RaneemAbdulazez/formsAnalyser#readme",
+  "dependencies": {
+    "jest": "^27.0.6",
+    "jsdom": "^16.6.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.8.0"
+  }
+}
